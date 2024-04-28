@@ -1,0 +1,29 @@
+.header {
+  position: fixed;
+  z-index: 1;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background: #fff;
+  justify-content: space-between;
+}
+
+.navbar {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 70%;
+  & a {
+    text-decoration: none;
+    font-size: 18px;
+    color: #000;
+  }
+}
+
+.unAuthBtn {
+  min-width: 200px;
+}
