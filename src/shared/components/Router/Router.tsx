@@ -1,7 +1,6 @@
 import { Suspense } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { ROUTES } from "../../static";
-import { useAuthContext } from "../../../api/context/useAuthContext";
 import { SignUpPage } from "../../pages/signup/SignUpPage";
 import { MainPage } from "../../pages/main/MainPage";
 import { CardPage } from "../../pages/card/CardPage";
@@ -10,10 +9,9 @@ import { HistoryPage } from "../../pages/history/HistoryPage";
 import { SearchPage } from "../../pages/search/SearchPage";
 import { SignInPage } from "../../pages/signin/SignInPage";
 import { HeaderProvider } from "../../providers/HeaderProvider";
+import { LogInCheckoutProvider } from "../../providers";
 
 export const Router = () => {
-  const { session } = useAuthContext();
-
   return (
     <Suspense fallback={<div>Загрузка страницы...</div>}>
       <HeaderProvider>
@@ -23,21 +21,17 @@ export const Router = () => {
           <Route
             path={ROUTES.FAVORITES}
             element={
-              session.isLogedIn === "authorized" ? (
+              <LogInCheckoutProvider>
                 <FavoritesPage />
-              ) : (
-                <Navigate to={"/signin"} />
-              )
+              </LogInCheckoutProvider>
             }
           />
           <Route
             path={ROUTES.HISTORY}
             element={
-              session.isLogedIn === "authorized" ? (
+              <LogInCheckoutProvider>
                 <HistoryPage />
-              ) : (
-                <Navigate to={"/signin"} />
-              )
+              </LogInCheckoutProvider>
             }
           />
           <Route path={ROUTES.SEARCH} element={<SearchPage />} />
