@@ -1,23 +1,20 @@
 import React from "react";
 
-export type isLogedIn = "authorized" | "unauthorized";
-
 export interface Store {
   session: {
-    isLogedIn: isLogedIn;
+    isLogedIn: boolean;
   };
 }
 
 export interface AuthContextProps {
   store: Store;
-  // setStore: React.Dispatch<React.SetStateAction<Store>>;
-  setStore: (auth: isLogedIn) => void;
+  setStore: (logedIn: boolean) => void;
 }
 
 export const AuthContext = React.createContext<AuthContextProps>({
   store: {
     session: {
-      isLogedIn: "unauthorized",
+      isLogedIn: false,
     },
   },
   setStore: () => {},

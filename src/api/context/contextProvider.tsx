@@ -1,7 +1,7 @@
 import React from "react";
-import { AuthContext, Store, isLogedIn } from "./authContext";
-
-const ITEM_KEY = "isLogedIn";
+import { AuthContext, AuthContextProps, Store } from "./authContext";
+import { User, onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../shared/firebase/firebase";
 
 interface AuthContextProviderProps {
   children: React.ReactNode;
@@ -12,27 +12,39 @@ interface AuthContextProviderProps {
 export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
   children,
 }) => {
-  const [authContext, setAuthContext] = React.useState<Store>(() => {
-    const current = localStorage.getItem(ITEM_KEY);
-    return {
-      session: {
-        //using as just for now, will remove this entire context later
-        isLogedIn: (current as isLogedIn) ?? "unauthorized",
-      },
-    };
+  const [authContext, setAuthContext] = React.useState<Store>({
+    session: {
+      isLogedIn: false,
+    },
   });
 
-  const value = React.useMemo(
+  const inititalizer = (user: any) => {
+    if (user) {
+      setAuthContext({
+        session: {
+          isLogedIn: true,
+        },
+      });
+    }
+  };
+
+  React.useEffect(() => {
+    const subscribe = onAuthStateChanged(auth, inititalizer);
+    return subscribe;
+  }, []);
+
+  const setAuthLogedIn = (isLogedIn: boolean) => {
+    setAuthContext({
+      session: {
+        isLogedIn: isLogedIn,
+      },
+    });
+  };
+
+  const value = React.useMemo<AuthContextProps>(
     () => ({
       store: authContext,
-      setStore: (auth: isLogedIn) => {
-        localStorage.setItem(ITEM_KEY, auth);
-        setAuthContext({
-          session: {
-            isLogedIn: auth,
-          },
-        });
-      },
+      setStore: setAuthLogedIn,
     }),
     [authContext]
   );
