@@ -4,6 +4,7 @@ import styles from "./Header.module.scss";
 import { useAuthContext } from "../../../api/context/useAuthContext";
 import { LogOut } from "../../firebase/actions/logOut";
 import { auth } from "../../firebase/firebase";
+import { useAppSelector } from "../../../api/redux/store";
 
 const LINKS = [
   {
@@ -26,6 +27,7 @@ const LINKS = [
 
 export const Header = () => {
   const { setStore } = useAuthContext();
+  const user = useAppSelector((state) => state.user);
 
   const handleLogOut = async () => {
     await LogOut(auth);
@@ -44,6 +46,7 @@ export const Header = () => {
       <button className={styles.unAuthBtn} onClick={handleLogOut}>
         Log out
       </button>
+      <p style={{ color: "red" }}>{user.name}</p>
     </header>
   );
 };

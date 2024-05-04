@@ -1,1 +1,1 @@
-export * from "./useFetchCharacter";
+export const tmp = 0;
