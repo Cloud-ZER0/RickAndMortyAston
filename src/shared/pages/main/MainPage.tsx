@@ -1,35 +1,36 @@
 import { Card } from "../../components/Card/Card";
-import useFetchCharecters from "../../hooks/useFetchCharacter";
 import styles from "./MainPage.module.scss";
+import { useGetAllCharectersQuery } from "../../../api/redux/api/card-api";
+import React from "react";
+import { LoadMoreTrgigger } from "../../components/LoadMoreTriger/LoadMoreTriger";
 
 export const MainPage = () => {
-  const { charecters, loading, error, nextPage, fetchMore } =
-    useFetchCharecters();
-  // will handle later
-  if (error) {
-    console.log(error);
-  }
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const { data, isLoading, isError, isFetching } =
+    useGetAllCharectersQuery(currentPage);
 
-  const handleFetchMore = async () => {
-    await fetchMore();
+  console.log(isFetching);
+  const handlePageChange = () => {
+    setCurrentPage((current) => current + 1);
   };
 
   return (
     <section className="section">
       <h1 className={styles.title}>The Rick and Morty</h1>
-      {loading ? (
+      {isLoading ? (
         <h1>Loading...</h1>
       ) : (
         <div className={styles.charList}>
-          {charecters &&
-            charecters.map((char, i) => <Card key={i} {...char} />)}
+          {data?.cards &&
+            data.cards.map((char, i) => <Card key={i} {...char} />)}
         </div>
       )}
-      {nextPage && (
-        <div className={styles.moreBtn}>
-          <button onClick={handleFetchMore}>Load more</button>
-        </div>
-      )}
+      <LoadMoreTrgigger
+        setCurrentPage={handlePageChange}
+        hasNextPage={data?.hasNextPage}
+        isFetching={isFetching}
+      />
+      {isError && <h1>Oops somegthing goes wrong</h1>}
     </section>
   );
 };

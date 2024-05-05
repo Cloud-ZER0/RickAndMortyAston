@@ -3,8 +3,8 @@ import styles from "./Card.module.scss";
 import clsx from "clsx";
 import { FavButton } from "../UI/FavButton/FavButton";
 
-type Status = "Alive" | "Dead" | "unknown";
-type Gender = "Male" | "Female" | "Genderless" | "unknown";
+export type Status = "Alive" | "Dead" | "unknown";
+export type Gender = "Male" | "Female" | "Genderless" | "unknown";
 
 export interface CharecterCard {
   name: string;

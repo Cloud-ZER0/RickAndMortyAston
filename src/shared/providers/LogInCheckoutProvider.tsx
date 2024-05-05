@@ -9,5 +9,13 @@ export const LogInCheckoutProvider = ({
 }) => {
   const { session } = useAuthContext();
 
+  if (session.loading) {
+    return (
+      <h1 style={{ textAlign: "center", marginTop: "100px" }}>
+        Initialazing...
+      </h1>
+    );
+  }
+
   return <>{session.isLogedIn ? children : <Navigate to={"/signin"} />}</>;
 };

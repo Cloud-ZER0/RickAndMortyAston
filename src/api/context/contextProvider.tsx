@@ -1,13 +1,11 @@
 import React from "react";
 import { AuthContext, AuthContextProps, Store } from "./authContext";
-import { User, onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../shared/firebase/firebase";
 
 interface AuthContextProviderProps {
   children: React.ReactNode;
 }
-
-// Remove this context later, will use redux instead,
 
 export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
   children,
@@ -15,6 +13,7 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
   const [authContext, setAuthContext] = React.useState<Store>({
     session: {
       isLogedIn: false,
+      loading: true,
     },
   });
 
@@ -23,6 +22,7 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
       setAuthContext({
         session: {
           isLogedIn: true,
+          loading: false,
         },
       });
     }
@@ -37,6 +37,7 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
     setAuthContext({
       session: {
         isLogedIn: isLogedIn,
+        loading: false,
       },
     });
   };
@@ -48,6 +49,8 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
     }),
     [authContext]
   );
+
+  console.log(value.store.session.loading);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
