@@ -1,4 +1,4 @@
-import { Result } from "../../api/redux/api/card-api";
+import { Result } from "../../api/types";
 import { CharecterCard } from "../components/Card/Card";
 const parseLoadedCharecters = (data: Result[]): CharecterCard[] => {
   return data.map((el) => ({

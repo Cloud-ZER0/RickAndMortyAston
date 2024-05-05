@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// Я посмотрел репозитории людей с прошлого потока, многие из них создают для истории и избранного отдельный state.
+// Можно ли использовать один глобальный state User, который хранит все данные о пользователе, в том числе избранное и историю?
+// Или лучше все таки разделить на несколько stor'ов?
+
 interface User {
   name: String | null;
   email: String | null;
@@ -23,6 +27,7 @@ export const userSlice = createSlice({
     },
     removeUser(state) {
       state = initialState;
+      console.log("state removed");
     },
   },
 });

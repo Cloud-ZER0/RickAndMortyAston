@@ -5,6 +5,8 @@ import { useAuthContext } from "../../../api/context/useAuthContext";
 import { LogOut } from "../../firebase/actions/logOut";
 import { auth } from "../../firebase/firebase";
 import { useAppSelector } from "../../../api/redux/store";
+import { useDispatch } from "react-redux";
+import { removeUser } from "../../../api/redux/slices/user";
 
 const LINKS = [
   {
@@ -28,11 +30,15 @@ const LINKS = [
 export const Header = () => {
   const { setStore } = useAuthContext();
   const user = useAppSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const handleLogOut = async () => {
     await LogOut(auth);
     setStore(false);
+    dispatch(removeUser());
   };
+
+  console.log(user.name);
 
   return (
     <header className={styles.header}>
