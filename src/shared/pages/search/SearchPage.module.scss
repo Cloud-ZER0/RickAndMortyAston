@@ -4,21 +4,13 @@
   gap: 20px;
 }
 
-.title {
-  text-align: center;
-  font-size: 40px;
-  margin-bottom: 20px;
-}
-
 .moreBtn {
   display: flex;
   justify-content: center;
   margin: 50px 0px;
 }
 
-.searchSection {
-  text-align: center;
-  & h1 {
-    margin-bottom: 40px;
-  }
+.title {
+  text-align: left;
+  margin: 20px 0px;
 }

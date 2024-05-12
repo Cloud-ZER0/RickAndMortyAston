@@ -18,17 +18,26 @@ export const useSigneIn = (auth: Auth) => {
       setLoading(true);
       setError(undefined);
       await signInWithEmailAndPassword(auth, email, password)
-        .then(async (user) => {
-          const docRef = doc(database, "users", user.user.uid);
-          const snapShot = await getDoc(docRef);
-          const userData = snapShot.data();
-          dispatch(
-            setUser({
-              name: userData?.name ?? "user",
-              token: user.user.uid,
-              email: userData?.email,
-            })
-          );
+        // .then(async (user) => {
+        //   const docRef = doc(database, "users", user.user.uid);
+        //   const snapShot = await getDoc(docRef);
+        //   const userData = snapShot.data();
+        //   console.log(userData);
+        //   dispatch(
+        //     setUser({
+        //       name: userData?.name ?? "user",
+        //       token: user.user.uid,
+        //       email: userData?.email,
+        //       history: {
+        //         data: userData?.history,
+        //         isLoading: false,
+        //         isError: false,
+        //       },
+        //     })
+        //   );
+        //   navigate("/");
+        // })
+        .then(() => {
           navigate("/");
         })
         .catch((err) => setError(err as AuthError))

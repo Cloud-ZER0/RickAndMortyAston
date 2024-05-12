@@ -7,23 +7,19 @@ import { auth } from "../../firebase/firebase";
 import { useAppSelector } from "../../../api/redux/store";
 import { useDispatch } from "react-redux";
 import { removeUser } from "../../../api/redux/slices/user";
-import { Search } from "../UI/Search/Search";
+import { LogoIcon } from "../../icons/LogoIcon";
 
 const LINKS = [
   {
-    title: "Главная",
-    href: ROUTES.HOME,
-  },
-  {
-    title: "Избранное",
+    title: "Favorite",
     href: ROUTES.FAVORITES,
   },
   {
-    title: "История",
+    title: "History",
     href: ROUTES.HISTORY,
   },
   {
-    title: "Поиск",
+    title: "Search",
     href: ROUTES.SEARCH,
   },
 ];
@@ -31,6 +27,8 @@ const LINKS = [
 export const Header = () => {
   const { setStore } = useAuthContext();
   const user = useAppSelector((state) => state.user);
+  const { session } = useAuthContext();
+
   const dispatch = useDispatch();
 
   const handleLogOut = async () => {
@@ -43,18 +41,31 @@ export const Header = () => {
     <header className={styles.header}>
       <div className={styles.top}>
         <nav className={styles.navbar}>
+          <Link to={"/"}>
+            <LogoIcon />
+          </Link>
           {LINKS.map((link, i) => (
-            <Link to={link.href} key={i}>
+            <Link className={styles.link} to={link.href} key={i}>
               {link.title}
             </Link>
           ))}
         </nav>
-        <button className={styles.unAuthBtn} onClick={handleLogOut}>
-          Log out
-        </button>
-        <p style={{ color: "red" }}>{user.name}</p>
+        {session.isLogedIn ? (
+          <button className={styles.unAuthBtn} onClick={handleLogOut}>
+            Logout
+          </button>
+        ) : (
+          <div className={styles.logInLinks}>
+            <Link className={styles.link} to={"/signin"}>
+              SigIn
+            </Link>
+            <Link className={styles.link} to={"/signup"}>
+              SignUp
+            </Link>
+          </div>
+        )}
+        {/* <p style={{ color: "red" }}>{user.name}</p> */}
       </div>
-      <Search />
     </header>
   );
 };

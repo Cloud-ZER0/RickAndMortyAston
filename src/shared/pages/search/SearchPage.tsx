@@ -1,10 +1,11 @@
 import React from "react";
 import { useFindCharactersByNameQuery } from "../../../api/redux/api/card-api";
 import { Card } from "../../components/Card/Card";
-import { LoadMoreTrgigger } from "../../components/LoadMoreTriger/LoadMoreTriger";
 import styles from "./SearchPage.module.scss";
 import { useSearchParams } from "react-router-dom";
 import clsx from "clsx";
+import { Search } from "../../components/UI/Search/Search";
+import { Loading } from "../../components/Loading/Loading";
 
 const useSearchParamsHook = (): string | null => {
   const [searchParams] = useSearchParams();
@@ -15,34 +16,25 @@ export const SearchPage = () => {
   const query = useSearchParamsHook();
 
   const { data, isLoading, isError } = useFindCharactersByNameQuery(
-    query ?? ""
+    query ?? "null"
   );
-
-  if (!query) {
-    return (
-      <section className="section">Type something to find charecter!</section>
-    );
-  }
 
   return (
     <section className={clsx("section", styles.searchSection)}>
-      {isLoading ? (
-        <h1>Loading...</h1>
-      ) : isError ? (
-        <h1>{`Nothing found by keyword: ${query}`}</h1>
+      <Search />
+      {isError ? (
+        <h1>{`Nothing found`}</h1>
       ) : (
-        <>
-          <h1>{`Search by keyword: ${query}`}</h1>
-          <div className={styles.charList}>
-            {data && data.map((char, i) => <Card key={i} {...char} />)}
-          </div>
-        </>
+        query && (
+          <React.Fragment>
+            <p className={styles.title}>{`Search by keyword: ${query}`}</p>
+            <div className={styles.charList}>
+              {data && data.map((char, i) => <Card key={i} {...char} />)}
+            </div>{" "}
+          </React.Fragment>
+        )
       )}
-      {/* <LoadMoreTrgigger
-        setCurrentPage={handlePageChange}
-        hasNextPage={data?.hasNextPage}
-        isFetching={isFetching}
-      /> */}
+      <Loading isLoading={isLoading} />
     </section>
   );
 };

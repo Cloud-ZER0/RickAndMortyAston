@@ -2,6 +2,9 @@ import React from "react";
 import styles from "./Search.module.scss";
 import { ErrMessage } from "../ErrMessage/ErrMessage";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../../../api/redux/store";
+import { setHistory } from "../../../../api/redux/thunks/history-thunk";
+import { IconSearch } from "../../../icons/SearchIcon";
 
 const ERROR = "Type something to search!";
 
@@ -16,6 +19,8 @@ export const Search = () => {
   const [error, setError] = React.useState<string | null>(null);
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const user = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
 
   React.useEffect(() => {
     setSearchQuery(searchParams.get("name"));
@@ -26,12 +31,19 @@ export const Search = () => {
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    console.log(searchQuery);
     e.preventDefault();
     if (!searchQuery) {
       setError(ERROR);
       debounceErr(handleError);
     } else {
+      if (user.token) {
+        dispatch(
+          setHistory({
+            userId: user.token,
+            query: searchQuery,
+          })
+        );
+      }
       navigate(`/search?name=${searchQuery}`);
     }
   };
@@ -51,7 +63,7 @@ export const Search = () => {
         {error && <ErrMessage>{error}</ErrMessage>}
       </div>
       <button type="submit" className={styles.findBtn}>
-        Find!
+        <IconSearch />
       </button>
     </form>
   );

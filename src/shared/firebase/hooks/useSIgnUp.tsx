@@ -20,16 +20,21 @@ export const useSigneUp = (auth: Auth) => {
       setLoading(true);
       setError(undefined);
       await createUserWithEmailAndPassword(auth, email, password)
-        .then((user) => {
-          dispatch(
-            setUser({
-              name: name,
-              token: user.user.uid,
-              email: user.user.email,
-            })
-          );
-          return user;
-        })
+        // .then((user) => {
+        //   dispatch(
+        //     setUser({
+        //       name: name,
+        //       token: user.user.uid,
+        //       email: user.user.email,
+        //       history: {
+        //         data: [],
+        //         isLoading: false,
+        //         isError: false,
+        //       },
+        //     })
+        //   );
+        //   return user;
+        // })
         .then(async (user) => {
           await setDoc(doc(database, "users", user.user.uid), {
             name: name ?? "user",
