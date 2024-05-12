@@ -33,10 +33,10 @@ export const cardApi = createApi({
         return parseSingleLoadedCharecter(response);
       },
     }),
-    findCharactersByName: builder.query<CharecterCard, string>({
-      query: (name) => `/character/?name=${name}}`,
-      transformResponse: (response: Result) => {
-        return parseSingleLoadedCharecter(response);
+    findCharactersByName: builder.query<CharecterCard[], string>({
+      query: (name) => `/character/?name=${name}`,
+      transformResponse: (response: ResponseType) => {
+        return parseLoadedCharecters(response.results);
       },
     }),
   }),

@@ -1,0 +1,24 @@
+.charList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.title {
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.moreBtn {
+  display: flex;
+  justify-content: center;
+  margin: 50px 0px;
+}
+
+.searchSection {
+  text-align: center;
+  & h1 {
+    margin-bottom: 40px;
+  }
+}

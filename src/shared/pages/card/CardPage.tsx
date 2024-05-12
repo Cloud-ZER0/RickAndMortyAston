@@ -21,7 +21,7 @@ export const CardPage = () => {
   }
 
   return (
-    <main>
+    <>
       {isLoading ? (
         <h1>Loading</h1>
       ) : (
@@ -36,6 +36,6 @@ export const CardPage = () => {
           </div>
         </section>
       )}
-    </main>
+    </>
   );
 };

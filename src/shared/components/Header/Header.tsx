@@ -7,6 +7,7 @@ import { auth } from "../../firebase/firebase";
 import { useAppSelector } from "../../../api/redux/store";
 import { useDispatch } from "react-redux";
 import { removeUser } from "../../../api/redux/slices/user";
+import { Search } from "../UI/Search/Search";
 
 const LINKS = [
   {
@@ -38,21 +39,22 @@ export const Header = () => {
     dispatch(removeUser());
   };
 
-  console.log(user.name);
-
   return (
     <header className={styles.header}>
-      <nav className={styles.navbar}>
-        {LINKS.map((link, i) => (
-          <Link to={link.href} key={i}>
-            {link.title}
-          </Link>
-        ))}
-      </nav>
-      <button className={styles.unAuthBtn} onClick={handleLogOut}>
-        Log out
-      </button>
-      <p style={{ color: "red" }}>{user.name}</p>
+      <div className={styles.top}>
+        <nav className={styles.navbar}>
+          {LINKS.map((link, i) => (
+            <Link to={link.href} key={i}>
+              {link.title}
+            </Link>
+          ))}
+        </nav>
+        <button className={styles.unAuthBtn} onClick={handleLogOut}>
+          Log out
+        </button>
+        <p style={{ color: "red" }}>{user.name}</p>
+      </div>
+      <Search />
     </header>
   );
 };
