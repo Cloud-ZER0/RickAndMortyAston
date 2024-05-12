@@ -13,6 +13,7 @@ export interface CharecterCard {
   location: string;
   image: string;
   id: number;
+  episodes?: string[];
 }
 
 export const Card = ({

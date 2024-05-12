@@ -27,13 +27,13 @@ export const cardApi = createApi({
         return currentArg !== previousArg;
       },
     }),
-    getSingleCharacter: builder.query<CharecterCard, number>({
+    getSingleCharacter: builder.query<CharecterCard, string>({
       query: (id) => `/character/${id}`,
       transformResponse: (response: Result) => {
         return parseSingleLoadedCharecter(response);
       },
     }),
-    findCharactersByName: builder.query<CharecterCard, String>({
+    findCharactersByName: builder.query<CharecterCard, string>({
       query: (name) => `/character/?name=${name}}`,
       transformResponse: (response: Result) => {
         return parseSingleLoadedCharecter(response);
