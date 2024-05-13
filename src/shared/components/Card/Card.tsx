@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import styles from "./Card.module.scss";
 import clsx from "clsx";
 import { FavButton } from "../UI/FavButton/FavButton";
+import useIsInFavorite from "../../hooks/useIsInFavorite";
 
 export type Status = "Alive" | "Dead" | "unknown";
 export type Gender = "Male" | "Female" | "Genderless" | "unknown";
@@ -24,6 +25,8 @@ export const Card = ({
   image,
   id,
 }: CharecterCard) => {
+  const { isInfavorite, onTogleFavorite } = useIsInFavorite(String(id));
+
   return (
     <div className={styles.card}>
       <div>
@@ -52,7 +55,10 @@ export const Card = ({
         </div>
       </div>
       <div className={styles.btnWrap}>
-        <FavButton />
+        <FavButton
+          isInFavorite={isInfavorite}
+          onTogleFavorite={onTogleFavorite}
+        />
       </div>
     </div>
   );

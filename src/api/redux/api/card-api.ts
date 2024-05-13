@@ -39,6 +39,12 @@ export const cardApi = createApi({
         return parseLoadedCharecters(response.results);
       },
     }),
+    getSeveralCharectersById: builder.query<CharecterCard[], string>({
+      query: (ids) => `/character/${ids}`,
+      transformResponse: (response: Result[]) => {
+        return parseLoadedCharecters(response);
+      },
+    }),
   }),
 });
 
@@ -46,4 +52,5 @@ export const {
   useGetAllCharectersQuery,
   useGetSingleCharacterQuery,
   useFindCharactersByNameQuery,
+  useGetSeveralCharectersByIdQuery,
 } = cardApi;

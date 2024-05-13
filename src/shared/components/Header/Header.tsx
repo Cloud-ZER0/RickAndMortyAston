@@ -26,7 +26,7 @@ const LINKS = [
 
 export const Header = () => {
   const { setStore } = useAuthContext();
-  const user = useAppSelector((state) => state.user);
+
   const { session } = useAuthContext();
 
   const dispatch = useDispatch();
@@ -64,7 +64,6 @@ export const Header = () => {
             </Link>
           </div>
         )}
-        {/* <p style={{ color: "red" }}>{user.name}</p> */}
       </div>
     </header>
   );

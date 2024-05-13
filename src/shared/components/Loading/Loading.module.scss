@@ -1,5 +1,5 @@
 .loader {
-  position: absolute;
+  position: fixed;
   border-radius: 20px;
   top: 0px;
   left: 0px;
@@ -15,6 +15,6 @@
 }
 
 .visible {
-  opacity: 0.7;
+  opacity: 0.3;
   z-index: 1;
 }
