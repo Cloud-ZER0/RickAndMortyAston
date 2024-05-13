@@ -1,8 +1,9 @@
-import { Card } from "../../components/Card/Card";
 import styles from "./MainPage.module.scss";
 import { useGetAllCharectersQuery } from "../../../api/redux/api/card-api";
 import React from "react";
 import { LoadMoreTrgigger } from "../../components/LoadMoreTriger/LoadMoreTriger";
+import { Loading } from "../../components/Loading/Loading";
+import { MainPageList } from "../../components/MainPageList/MainPageList";
 
 const MainPage = () => {
   const [currentPage, setCurrentPage] = React.useState(1);
@@ -16,21 +17,13 @@ const MainPage = () => {
   return (
     <section className="section">
       <h1 className={styles.title}>The Rick and Morty</h1>
-
-      {isLoading ? (
-        <h1>Loading...</h1>
-      ) : (
-        <div className={styles.charList}>
-          {data?.cards &&
-            data.cards.map((char, i) => <Card key={i} {...char} />)}
-        </div>
-      )}
+      {data ? <MainPageList data={data.cards} /> : null}
       <LoadMoreTrgigger
         setCurrentPage={handlePageChange}
         hasNextPage={data?.hasNextPage}
         isFetching={isFetching}
       />
-      {isError && <h1>Oops somegthing goes wrong</h1>}
+      <Loading isLoading={isLoading} />
     </section>
   );
 };

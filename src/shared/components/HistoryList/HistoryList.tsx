@@ -1,6 +1,4 @@
-import React from "react";
 import styles from "./HistoryList.module.scss";
-import { Loading } from "../Loading/Loading";
 import { HistoryRow } from "../UI/HistoryRow/HistoryRow";
 
 interface HistoryListProps {

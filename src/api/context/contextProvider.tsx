@@ -39,7 +39,6 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
         },
       });
     } else {
-      console.log("@@@@@");
       dispatch(removeUser());
       setAuthContext({
         session: {

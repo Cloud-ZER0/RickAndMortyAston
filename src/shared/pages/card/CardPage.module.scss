@@ -1,3 +1,12 @@
+@keyframes anim {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .charecterPage {
   display: flex;
   gap: 20px;
@@ -9,6 +18,7 @@
     rgb(66, 66, 66) 33%,
     rgb(109, 109, 109) 63%
   );
+  animation: anim 300ms ease-out forwards;
 }
 
 .episodesList {
