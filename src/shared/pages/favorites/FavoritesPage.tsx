@@ -5,7 +5,7 @@ import { NothingYet } from "../../components/NothingYet/NothingYet";
 import useFavorite from "../../hooks/useFavorite";
 import paresIds from "../../utils/parseIds";
 
-export const FavoritesPage = () => {
+const FavoritesPage = () => {
   const { data, isLoading, toggleClearFavorite } = useFavorite();
 
   return (
@@ -20,3 +20,5 @@ export const FavoritesPage = () => {
     </section>
   );
 };
+
+export default FavoritesPage;

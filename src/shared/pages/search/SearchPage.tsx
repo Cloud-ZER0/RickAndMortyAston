@@ -8,7 +8,7 @@ const useSearchParamsHook = (): string | null => {
   return searchParams.get("name");
 };
 
-export const SearchPage = () => {
+const SearchPage = () => {
   const query = useSearchParamsHook();
 
   return (
@@ -18,3 +18,5 @@ export const SearchPage = () => {
     </section>
   );
 };
+
+export default SearchPage;

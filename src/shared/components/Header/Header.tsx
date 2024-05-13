@@ -37,6 +37,8 @@ export const Header = () => {
     dispatch(removeUser());
   };
 
+  console.log("render");
+
   return (
     <header className={styles.header}>
       <div className={styles.top}>

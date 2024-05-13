@@ -4,7 +4,7 @@ import { Loading } from "../../components/Loading/Loading";
 import { HistoryList } from "../../components/HistoryList/HistoryList";
 import { NothingYet } from "../../components/NothingYet/NothingYet";
 
-export const HistoryPage = () => {
+const HistoryPage = () => {
   const { data, isLoading, clearUserHistory } = useHistory();
 
   return (
@@ -18,3 +18,5 @@ export const HistoryPage = () => {
     </section>
   );
 };
+
+export default HistoryPage;

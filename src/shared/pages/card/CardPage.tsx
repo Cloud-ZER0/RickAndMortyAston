@@ -12,7 +12,7 @@ const Episode = ({ epNumber }: { epNumber: string }) => {
   );
 };
 
-export const CardPage = () => {
+const CardPage = () => {
   const { id } = useParams();
   const { data, isLoading, isError } = useGetSingleCharacterQuery(id ?? "1");
 
@@ -39,3 +39,5 @@ export const CardPage = () => {
     </>
   );
 };
+
+export default CardPage;

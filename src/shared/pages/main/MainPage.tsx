@@ -5,7 +5,7 @@ import React from "react";
 import { LoadMoreTrgigger } from "../../components/LoadMoreTriger/LoadMoreTriger";
 import { Search } from "../../components/UI/Search/Search";
 
-export const MainPage = () => {
+const MainPage = () => {
   const [currentPage, setCurrentPage] = React.useState(1);
   const { data, isLoading, isError, isFetching } =
     useGetAllCharectersQuery(currentPage);
@@ -35,3 +35,5 @@ export const MainPage = () => {
     </section>
   );
 };
+
+export default MainPage;
