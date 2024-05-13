@@ -1,5 +1,6 @@
 import React from "react";
 import { useInView } from "react-intersection-observer";
+import { ClipLoader } from "react-spinners";
 
 export interface ILoadMoreProps {
   setCurrentPage: () => void;
@@ -20,5 +21,17 @@ export const LoadMoreTrgigger = ({
     }
   }, [inView, setCurrentPage, hasNextPage, isFetching]);
 
-  return <div ref={ref}>{hasNextPage && <h1>Loading...</h1>}</div>;
+  return (
+    <div
+      style={{
+        width: "100%",
+        marginTop: "50px",
+        display: "flex",
+        justifyContent: "center",
+      }}
+      ref={ref}
+    >
+      {hasNextPage ? <ClipLoader color="#36d7b7" /> : null}
+    </div>
+  );
 };

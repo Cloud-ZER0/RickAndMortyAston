@@ -12,7 +12,7 @@ interface DataType {
 }
 
 export const getHistory = createAsyncThunk(
-  "user/getHistory",
+  "historySlice/getHistory",
   async (userId: string) => {
     const history = await getUserhistory(userId);
 
@@ -21,7 +21,7 @@ export const getHistory = createAsyncThunk(
 );
 
 export const setHistory = createAsyncThunk(
-  "setHistory",
+  "historySlice/setHistory",
   async (data: DataType) => {
     await setUserHistory(data.userId, data.query);
     return data.query;
@@ -29,7 +29,7 @@ export const setHistory = createAsyncThunk(
 );
 
 export const removeQuery = createAsyncThunk(
-  "removeQueryFromHistory",
+  "historySlice/removeQueryFromHistory",
   async (data: DataType) => {
     await removeQueryFromHistory(data.userId, data.query);
     return data.query;
@@ -37,7 +37,7 @@ export const removeQuery = createAsyncThunk(
 );
 
 export const clearHistory = createAsyncThunk(
-  "clearHistory",
+  "historySlice/clearHistory",
   async (uid: string) => {
     await clearUserHistory(uid);
   }

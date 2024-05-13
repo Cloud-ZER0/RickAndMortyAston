@@ -5,11 +5,13 @@ import { TypedUseSelectorHook, useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { userMiddleware } from "./middleware/user-middleware";
 import { historySlice } from "./slices/history";
+import { favoriteSlice } from "./slices/favorite";
 
 export const store = configureStore({
   reducer: {
     user: userSlice.reducer,
     history: historySlice.reducer,
+    favorite: favoriteSlice.reducer,
     [cardApi.reducerPath]: cardApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

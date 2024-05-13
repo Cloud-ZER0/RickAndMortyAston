@@ -7,7 +7,7 @@ import {
 } from "../thunks/history-thunk";
 
 interface History {
-  data: string[] | null;
+  data: string[];
   isLoading: boolean;
   isError: boolean;
 }
@@ -27,10 +27,13 @@ export const historySlice = createSlice({
       .addCase(getHistory.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getHistory.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
-        state.data = payload as string[];
-      })
+      .addCase(
+        getHistory.fulfilled,
+        (state, { payload }: { payload: string[] }) => {
+          state.isLoading = false;
+          state.data = payload;
+        }
+      )
       .addCase(getHistory.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
@@ -38,14 +41,17 @@ export const historySlice = createSlice({
       .addCase(setHistory.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(setHistory.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
-        if (state.data) {
-          state.data = [...state.data, payload as string];
-        } else {
-          state.data = new Array<string>(payload as string);
+      .addCase(
+        setHistory.fulfilled,
+        (state, { payload }: { payload: string }) => {
+          state.isLoading = false;
+          if (state.data) {
+            state.data = [...state.data, payload];
+          } else {
+            state.data = [payload];
+          }
         }
-      })
+      )
       .addCase(setHistory.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
@@ -68,7 +74,7 @@ export const historySlice = createSlice({
       })
       .addCase(clearHistory.fulfilled, (state) => {
         state.isLoading = false;
-        state.data = null;
+        state.data = [];
       })
       .addCase(clearHistory.rejected, (state) => {
         state.isLoading = false;
