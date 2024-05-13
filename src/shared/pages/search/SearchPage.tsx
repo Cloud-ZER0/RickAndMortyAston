@@ -13,7 +13,11 @@ const SearchPage = () => {
 
   return (
     <section className="section">
-      {query ? <SearchList keyword={query} /> : <NothingYet />}
+      {query ? (
+        <SearchList keyword={query} />
+      ) : (
+        <NothingYet isLoading={false} />
+      )}
     </section>
   );
 };

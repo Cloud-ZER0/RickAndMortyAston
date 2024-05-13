@@ -13,7 +13,7 @@ const HistoryPage = () => {
       {data.length ? (
         <HistoryList data={data} toggleClear={clearUserHistory} />
       ) : (
-        <NothingYet />
+        <NothingYet isLoading={isLoading} />
       )}
     </section>
   );

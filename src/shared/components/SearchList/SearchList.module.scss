@@ -1,7 +1,17 @@
+@keyframes anim {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .charList {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
+  animation: anim 300ms ease-out forwards;
 }
 
 .moreBtn {

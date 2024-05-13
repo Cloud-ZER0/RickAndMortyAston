@@ -11,12 +11,11 @@ const FavoritesPage = () => {
   return (
     <section className={"section"}>
       <Loading isLoading={isLoading} />
-      {data.length ? <FavoriteList ids={paresIds(data)} /> : <NothingYet />}
       {data.length ? (
-        <button className={styles.clearBtn} onClick={toggleClearFavorite}>
-          Clear favorite
-        </button>
-      ) : null}
+        <FavoriteList toggleClear={toggleClearFavorite} ids={paresIds(data)} />
+      ) : (
+        <NothingYet isLoading={isLoading} />
+      )}
     </section>
   );
 };

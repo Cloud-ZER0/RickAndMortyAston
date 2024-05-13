@@ -8,7 +8,7 @@ interface SearchListProps {
 }
 
 export const SearchList = ({ keyword }: SearchListProps) => {
-  const { data, isLoading, isError } = useFindCharactersByNameQuery(keyword);
+  const { data, isError, isFetching } = useFindCharactersByNameQuery(keyword);
 
   return (
     <>
@@ -21,7 +21,7 @@ export const SearchList = ({ keyword }: SearchListProps) => {
           {data && data.map((char, i) => <Card key={i} {...char} />)}
         </div>
       )}
-      <Loading isLoading={isLoading} />
+      <Loading isLoading={isFetching} />
     </>
   );
 };
