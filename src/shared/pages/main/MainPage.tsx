@@ -3,7 +3,6 @@ import styles from "./MainPage.module.scss";
 import { useGetAllCharectersQuery } from "../../../api/redux/api/card-api";
 import React from "react";
 import { LoadMoreTrgigger } from "../../components/LoadMoreTriger/LoadMoreTriger";
-import { Search } from "../../components/UI/Search/Search";
 
 const MainPage = () => {
   const [currentPage, setCurrentPage] = React.useState(1);
@@ -17,7 +16,7 @@ const MainPage = () => {
   return (
     <section className="section">
       <h1 className={styles.title}>The Rick and Morty</h1>
-      <Search />
+
       {isLoading ? (
         <h1>Loading...</h1>
       ) : (

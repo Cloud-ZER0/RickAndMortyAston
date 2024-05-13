@@ -3,36 +3,21 @@
   max-width: 650px;
   display: flex;
   align-items: flex-end;
-  padding: 10px;
   background: rgb(53, 53, 53);
-  border: 1px solid rgb(65, 64, 64);
-  border-radius: 15px;
-  margin: 40px auto;
   gap: 5px;
-  transition: all 300ms ease-out;
-  & label {
-    padding-left: 10px;
-    text-align: left;
-  }
-}
-
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
   transition: all 300ms ease-out;
 }
 
 .searchInpt {
   width: 100%;
   color: #fff;
-  background: rgb(99, 98, 98);
-  border-radius: 10px;
+  height: 43px;
+  background: rgb(73, 73, 73);
+  border-radius: 5px;
   border: none;
   font-weight: 600;
   font-size: 16px;
-  padding: 10px;
+  padding: 10px 15px;
   &:focus {
     border: none;
     outline: none;
@@ -43,8 +28,8 @@
 }
 
 .findBtn {
-  height: 40px;
-  width: 150px;
+  height: 43px;
+  padding: 10px;
   text-align: center;
   border-radius: 10px;
   border: 1px solid rgb(87, 86, 86);
