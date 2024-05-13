@@ -5,7 +5,7 @@ import { IconSearch } from "../../../icons/SearchIcon";
 import useSearch from "../../../hooks/useSearch";
 
 const isSearchBarVisible = (pathname: string): boolean => {
-  if (pathname === "/signin" || pathname === "/signout") return false;
+  if (pathname === "/signin" || pathname === "/signup") return false;
   return true;
 };
 
