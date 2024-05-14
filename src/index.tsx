@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import { AuthContextProvider } from "./api/context/contextProvider";
 import { Provider } from "react-redux";
 import { store } from "./api/redux/store";
+import { ToastProvider } from "./shared/components/ToastProvider/ToastProvider";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -14,11 +15,13 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <AuthContextProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </AuthContextProvider>
+      <ToastProvider>
+        <AuthContextProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </AuthContextProvider>
+      </ToastProvider>
     </Provider>
   </React.StrictMode>
 );

@@ -3,6 +3,7 @@ import styles from "./Card.module.scss";
 import clsx from "clsx";
 import { FavButton } from "../UI/FavButton/FavButton";
 import useIsInFavorite from "../../hooks/useIsInFavorite";
+import Modal from "../Modal/Modal";
 
 export type Status = "Alive" | "Dead" | "unknown";
 export type Gender = "Male" | "Female" | "Genderless" | "unknown";
@@ -25,7 +26,7 @@ export const Card = ({
   image,
   id,
 }: CharecterCard) => {
-  const { isInfavorite, onTogleFavorite } = useIsInFavorite(id);
+  const { favorite, modal } = useIsInFavorite(id);
 
   return (
     <div className={styles.card}>
@@ -56,9 +57,10 @@ export const Card = ({
       </div>
       <div className={styles.btnWrap}>
         <FavButton
-          isInFavorite={isInfavorite}
-          onTogleFavorite={onTogleFavorite}
+          isInFavorite={favorite.isInfavorite}
+          onTogleFavorite={favorite.onTogleFavorite}
         />
+        <Modal isOpen={modal.isModalOpen} toggleModal={modal.onToggleModal} />
       </div>
     </div>
   );
