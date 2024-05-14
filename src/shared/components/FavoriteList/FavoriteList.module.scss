@@ -14,28 +14,3 @@
   gap: 20px;
   animation: appearAnim 300ms ease-out forwards;
 }
-
-.clearBtn {
-  margin-top: 50px;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  padding: 0px 50px;
-  border-radius: 10px;
-  border: 1px solid rgb(77, 77, 77);
-  background: transparent;
-  transition: all 300ms ease-out;
-  opacity: 0;
-  cursor: pointer;
-  &:hover {
-    background: red;
-    border-color: red;
-  }
-}
-
-.visible {
-  opacity: 1;
-}

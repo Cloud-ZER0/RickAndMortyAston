@@ -3,6 +3,7 @@ import { useAuthContext } from "../../../../../api/context/useAuthContext";
 import useLogout from "../../../../firebase/hooks/useLogout";
 import { Link } from "react-router-dom";
 import styles from "./Controls.module.scss";
+import { Button } from "../../../UI/Button/Button";
 
 export const Controls = () => {
   const { session } = useAuthContext();
@@ -16,9 +17,7 @@ export const Controls = () => {
       )}
     >
       {session.isLogedIn ? (
-        <button className={styles.unAuthBtn} onClick={onLogout}>
-          Logout
-        </button>
+        <Button onAction={onLogout}>Logout</Button>
       ) : (
         <div className={styles.logInLinks}>
           <Link className={styles.link} to={"/signin"}>

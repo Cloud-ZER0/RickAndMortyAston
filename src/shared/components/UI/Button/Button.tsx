@@ -5,19 +5,14 @@ import clsx from "clsx";
 interface IBtnProps {
   children: React.ReactNode;
   className?: string;
-  onClick?: () => void;
+  onAction?: () => void;
   type?: "submit" | "reset" | "button";
 }
 
-export const Button = ({
-  children,
-  className,
-  type,
-  onClick = () => {},
-}: IBtnProps) => {
+export const Button = ({ children, className, type, onAction }: IBtnProps) => {
   return (
     <button
-      onClick={() => onClick()}
+      onClick={onAction}
       type={type}
       className={clsx(styles.btn, className)}
     >

@@ -2,11 +2,12 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../api/redux/store";
 import { useCallback, useEffect, useState } from "react";
 import { setHistory } from "../../api/redux/thunks/history-thunk";
+import { selectUid } from "../../api/redux/selectors";
 
 const useSearch = () => {
   const [searchQuery, setSearchQuery] = useState<string | null>(null);
   const [searchParams] = useSearchParams();
-  const uid = useAppSelector((store) => store.user.token);
+  const uid = useAppSelector(selectUid);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 

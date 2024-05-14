@@ -1,7 +1,7 @@
-import clsx from "clsx";
 import { useGetSeveralCharectersByIdQuery } from "../../../api/redux/api/card-api";
 import { Card } from "../Card/Card";
 import styles from "./FavoriteList.module.scss";
+import { ClearButton } from "../ClaerButton/ClearButton";
 
 interface FavoriteListProps {
   ids: string;
@@ -16,12 +16,11 @@ export const FavoriteList = ({ ids, toggleClear }: FavoriteListProps) => {
       <ul className={styles.list}>
         {isVisible && data.map((el, i) => <Card {...el} key={i} />)}
       </ul>
-      <button
-        className={clsx(styles.clearBtn, isVisible ? styles.visible : "")}
-        onClick={toggleClear}
-      >
-        Clear favorite
-      </button>
+      <ClearButton
+        onClearAction={toggleClear}
+        isVisible={isVisible as boolean}
+        placeHolder="Clear Favorite"
+      />
     </>
   );
 };

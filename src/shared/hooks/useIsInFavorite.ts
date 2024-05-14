@@ -1,22 +1,30 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../api/redux/store";
 import {
   removeFavorite,
   setFavorite,
 } from "../../api/redux/thunks/favorite-thunk";
+import {
+  selectFavorite,
+  selectIsFavoriteError,
+  selectIsFavoriteLoading,
+  selectUid,
+} from "../../api/redux/selectors";
 
-const useIsInFavorite = (cardId: string) => {
+const useIsInFavorite = (cardId: number) => {
   const [is, setIs] = useState(false);
-  const uid = useAppSelector((store) => store.user.token);
-  const favr = useAppSelector((store) => store.favorite);
+  const uid = useAppSelector(selectUid);
+  const data = useAppSelector(selectFavorite);
+  const isLoading = useAppSelector(selectIsFavoriteLoading);
+  const isError = useAppSelector(selectIsFavoriteError);
   const dispatch = useAppDispatch();
   useEffect(() => {
-    if (favr.data && favr.data.find((el) => el === cardId)) {
+    if (data && data.find((el) => el === cardId.toString())) {
       setIs(true);
     }
-  }, [favr, setIs, cardId]);
+  }, [data, setIs, cardId]);
 
-  const onTogleFavorite = () => {
+  const onTogleFavorite = useCallback(() => {
     if (uid) {
       if (is) {
         setIs(false);
@@ -26,9 +34,14 @@ const useIsInFavorite = (cardId: string) => {
         dispatch(setFavorite({ uid: uid, cardId: cardId }));
       }
     }
-  };
+  }, [uid, setIs, dispatch, cardId, is]);
 
-  return { isInfavorite: is, onTogleFavorite, isLoading: favr.isLoading, isError: favr.isError };
+  return {
+    isInfavorite: is,
+    onTogleFavorite,
+    isLoading: isLoading,
+    isError: isError,
+  };
 };
 
 export default useIsInFavorite;
