@@ -10,7 +10,11 @@ import { Input } from "../../UI/Input/Input";
 import { EMAIL_OPTIONS, PASSWORD_OPTIONS } from "../Options";
 import { FormFieldValues } from "../SignUpForm/SignUpForm";
 
-export const SignInForm: React.FC = () => {
+interface SignInFormProps {
+  toggleModal?: () => void;
+}
+
+export const SignInForm = ({ toggleModal }: SignInFormProps) => {
   const {
     register,
     handleSubmit,
@@ -24,6 +28,9 @@ export const SignInForm: React.FC = () => {
     await registerUserWithEmailAndPassword(data.login, data.password);
     setValue("login", "");
     setValue("password", "");
+    if (toggleModal) {
+      toggleModal();
+    }
   };
 
   return (

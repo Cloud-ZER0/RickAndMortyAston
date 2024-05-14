@@ -21,7 +21,11 @@ const initialState: Favorite = {
 export const favoriteSlice = createSlice({
   name: "favoriteSlice",
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    clearFavoriteLocal(store) {
+      store.data = [];
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(getFavorite.pending, (state) => {
@@ -80,3 +84,5 @@ export const favoriteSlice = createSlice({
       });
   },
 });
+
+export const { clearFavoriteLocal } = favoriteSlice.actions;

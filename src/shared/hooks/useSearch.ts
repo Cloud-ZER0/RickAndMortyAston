@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../api/redux/store";
 import { useCallback, useEffect, useState } from "react";
 import { setHistory } from "../../api/redux/thunks/history-thunk";
 import { selectUid } from "../../api/redux/selectors";
+import { onNotifyError } from "../utils/notification";
 
 const useSearch = () => {
   const [searchQuery, setSearchQuery] = useState<string | null>(null);
@@ -20,7 +21,7 @@ const useSearch = () => {
   };
   const toggleSearch = useCallback(() => {
     if (!searchQuery) {
-      console.log("alert");
+      onNotifyError();
       return;
     }
     if (uid) {

@@ -6,7 +6,7 @@ const CLEAR_FAVORITE_MSG = "Whislist was cleared";
 const FAVORITE_MSG = "Added to favorite";
 const FAVORITE_REMOVE_MSG = "Removed from favorite";
 const CLEAR_HISTORY_MSG = "History was cleared";
-const HISTORY_REMOVE_MSG = "History from favorite";
+const HISTORY_REMOVE_MSG = "Removed from history";
 
 const TOAST_SETUP: ToastOptions = {
   position: "bottom-right",

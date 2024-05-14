@@ -23,7 +23,6 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
 
   const inititalizer = (user: any) => {
     if (user) {
-      console.log(user);
       dispatch(
         setUser({
           email: user.email,

@@ -4,7 +4,6 @@ import React from "react";
 import { LoadMoreTrgigger } from "../../components/LoadMoreTriger/LoadMoreTriger";
 import { Loading } from "../../components/Loading/Loading";
 import { MainPageList } from "../../components/MainPageList/MainPageList";
-import { ToastContainer } from "react-toastify";
 
 const MainPage = () => {
   const [currentPage, setCurrentPage] = React.useState(1);

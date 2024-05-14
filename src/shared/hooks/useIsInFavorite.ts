@@ -14,6 +14,7 @@ import {
   onNotifyFavoriteAdded,
   onNotifyFavoriteRemoved,
 } from "../utils/notification";
+import useModal from "./useModal";
 
 const useIsInFavorite = (cardId: number) => {
   const [is, setIs] = useState(false);
@@ -21,10 +22,13 @@ const useIsInFavorite = (cardId: number) => {
   const data = useAppSelector(selectFavorite);
   const isLoading = useAppSelector(selectIsFavoriteLoading);
   const isError = useAppSelector(selectIsFavoriteError);
+  const { isOpen, onToggleModal } = useModal();
   const dispatch = useAppDispatch();
   useEffect(() => {
     if (data && data.find((el) => el === cardId.toString())) {
       setIs(true);
+    } else {
+      setIs(false);
     }
   }, [data, setIs, cardId]);
 
@@ -33,20 +37,28 @@ const useIsInFavorite = (cardId: number) => {
       if (is) {
         setIs(false);
         dispatch(removeFavorite({ uid: uid, cardId: cardId }));
-        // onNotifyFavoriteRemoved();
+        onNotifyFavoriteRemoved();
       } else {
         setIs(true);
         dispatch(setFavorite({ uid: uid, cardId: cardId }));
-        // onNotifyFavoriteAdded();
+        onNotifyFavoriteAdded();
       }
+    } else {
+      onToggleModal();
     }
-  }, [uid, setIs, dispatch, cardId, is]);
+  }, [uid, setIs, dispatch, cardId, is, onToggleModal]);
 
   return {
-    isInfavorite: is,
-    onTogleFavorite,
-    isLoading: isLoading,
-    isError: isError,
+    favorite: {
+      isInfavorite: is,
+      onTogleFavorite,
+      isLoading,
+      isError,
+    },
+    modal: {
+      isModalOpen: isOpen,
+      onToggleModal,
+    },
   };
 };
 
