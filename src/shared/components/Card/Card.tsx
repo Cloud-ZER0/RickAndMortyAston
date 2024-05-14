@@ -25,7 +25,7 @@ export const Card = ({
   image,
   id,
 }: CharecterCard) => {
-  const { isInfavorite, onTogleFavorite } = useIsInFavorite(String(id));
+  const { isInfavorite, onTogleFavorite } = useIsInFavorite(id);
 
   return (
     <div className={styles.card}>

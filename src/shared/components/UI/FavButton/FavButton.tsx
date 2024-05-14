@@ -1,10 +1,3 @@
-import { useEffect, useState } from "react";
-import {
-  store,
-  useAppDispatch,
-  useAppSelector,
-} from "../../../../api/redux/store";
-import { setFavorite } from "../../../../api/redux/thunks/favorite-thunk";
 import { FavrIcon } from "../../../icons/FavrIcon";
 import styles from "./FavButton.module.scss";
 import clsx from "clsx";

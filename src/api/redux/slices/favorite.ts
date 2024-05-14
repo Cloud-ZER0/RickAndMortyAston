@@ -7,7 +7,7 @@ import {
 } from "../thunks/favorite-thunk";
 
 interface Favorite {
-  data: string[];
+  data: number[];
   isLoading: boolean;
   isError: boolean;
 }
@@ -29,7 +29,7 @@ export const favoriteSlice = createSlice({
       })
       .addCase(
         getFavorite.fulfilled,
-        (state, { payload }: { payload: string[] }) => {
+        (state, { payload }: { payload: number[] }) => {
           state.data = payload;
           state.isLoading = false;
         }
@@ -43,7 +43,7 @@ export const favoriteSlice = createSlice({
       })
       .addCase(
         setFavorite.fulfilled,
-        (state, { payload }: { payload: string }) => {
+        (state, { payload }: { payload: number }) => {
           state.isLoading = false;
 
           state.data.push(payload);
@@ -58,7 +58,7 @@ export const favoriteSlice = createSlice({
       })
       .addCase(
         removeFavorite.fulfilled,
-        (state, { payload }: { payload: string }) => {
+        (state, { payload }: { payload: number }) => {
           state.isLoading = false;
           state.data = state.data.filter((el) => el !== payload);
         }

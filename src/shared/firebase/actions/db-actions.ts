@@ -48,14 +48,14 @@ export const getUserFavorite = async (uid: string) => {
   return null;
 };
 
-export const setUserFavorite = async (uid: string, cardId: string) => {
+export const setUserFavorite = async (uid: string, cardId: number) => {
   const docRef = doc(database, "users", uid);
   await updateDoc(docRef, {
     favorites: arrayUnion(cardId),
   });
 };
 
-export const removeItemFromFavorite = async (uid: string, cardId: string) => {
+export const removeItemFromFavorite = async (uid: string, cardId: number) => {
   const docRef = doc(database, "users", uid);
   await updateDoc(docRef, {
     favorites: arrayRemove(cardId),

@@ -5,9 +5,10 @@ import {
   removeQuery,
   setHistory,
 } from "../../api/redux/thunks/history-thunk";
+import { selectUid } from "../../api/redux/selectors";
 const useHistory = () => {
   const { data, isLoading, isError } = useAppSelector((state) => state.history);
-  const uid = useAppSelector((state) => state.user.token);
+  const uid = useAppSelector(selectUid);
   const dispatch = useAppDispatch();
 
   const addToHistory = useCallback(

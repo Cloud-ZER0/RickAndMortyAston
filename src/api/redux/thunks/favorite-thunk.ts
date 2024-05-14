@@ -8,7 +8,7 @@ import {
 
 interface ThunkArgs {
   uid: string;
-  cardId: string;
+  cardId: number;
 }
 
 export const getFavorite = createAsyncThunk(
