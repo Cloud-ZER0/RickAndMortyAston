@@ -1,4 +1,3 @@
-import styles from "./FavoritePage.module.scss";
 import { FavoriteList } from "../../components/FavoriteList/FavoriteList";
 import { Loading } from "../../components/Loading/Loading";
 import { NothingYet } from "../../components/NothingYet/NothingYet";
