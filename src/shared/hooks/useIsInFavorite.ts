@@ -10,6 +10,10 @@ import {
   selectIsFavoriteLoading,
   selectUid,
 } from "../../api/redux/selectors";
+import {
+  onNotifyFavoriteAdded,
+  onNotifyFavoriteRemoved,
+} from "../utils/notification";
 
 const useIsInFavorite = (cardId: number) => {
   const [is, setIs] = useState(false);
@@ -29,9 +33,11 @@ const useIsInFavorite = (cardId: number) => {
       if (is) {
         setIs(false);
         dispatch(removeFavorite({ uid: uid, cardId: cardId }));
+        // onNotifyFavoriteRemoved();
       } else {
         setIs(true);
         dispatch(setFavorite({ uid: uid, cardId: cardId }));
+        // onNotifyFavoriteAdded();
       }
     }
   }, [uid, setIs, dispatch, cardId, is]);

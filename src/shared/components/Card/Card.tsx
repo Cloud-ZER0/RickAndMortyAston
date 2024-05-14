@@ -27,6 +27,10 @@ export const Card = ({
 }: CharecterCard) => {
   const { isInfavorite, onTogleFavorite } = useIsInFavorite(id);
 
+  if (name === "Rick Sanchez") {
+    console.log(isInfavorite);
+  }
+
   return (
     <div className={styles.card}>
       <div>

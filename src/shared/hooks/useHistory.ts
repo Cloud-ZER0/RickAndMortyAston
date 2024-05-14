@@ -6,6 +6,10 @@ import {
   setHistory,
 } from "../../api/redux/thunks/history-thunk";
 import { selectUid } from "../../api/redux/selectors";
+import {
+  onNotifyClearHistory,
+  onNotifyHistoryRemoved,
+} from "../utils/notification";
 const useHistory = () => {
   const { data, isLoading, isError } = useAppSelector((state) => state.history);
   const uid = useAppSelector(selectUid);
@@ -34,6 +38,7 @@ const useHistory = () => {
             query: query,
           })
         );
+        onNotifyHistoryRemoved();
       }
     },
     [dispatch, uid]
@@ -42,6 +47,7 @@ const useHistory = () => {
   const clearUserHistory = useCallback(() => {
     if (uid) {
       dispatch(clearHistory(uid));
+      onNotifyClearHistory();
     }
   }, [dispatch, uid]);
 
