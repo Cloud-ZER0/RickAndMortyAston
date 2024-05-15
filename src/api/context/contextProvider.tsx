@@ -1,9 +1,9 @@
 import React from "react";
 import { AuthContext, AuthContextProps, Store } from "./authContext";
-import { onAuthStateChanged } from "firebase/auth";
+import { User, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../shared/firebase/firebase";
-import { useDispatch } from "react-redux";
 import { removeUser, setUser } from "../redux/slices/user";
+import { useAppDispatch } from "../redux/store";
 
 interface AuthContextProviderProps {
   children: React.ReactNode;
@@ -19,9 +19,9 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
     },
   });
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const inititalizer = (user: any) => {
+  const inititalizer = (user: User | null) => {
     if (user) {
       dispatch(
         setUser({

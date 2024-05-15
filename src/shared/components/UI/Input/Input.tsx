@@ -1,4 +1,4 @@
-import { FieldError } from "react-hook-form";
+import { FieldError, UseFormRegisterReturn } from "react-hook-form";
 import { ErrMessage } from "../ErrMessage/ErrMessage";
 import styles from "./Input.module.scss";
 
@@ -7,7 +7,7 @@ interface InputProps {
   labelName: string;
   id: string;
   placeholder: string;
-  register: any;
+  register: UseFormRegisterReturn<"login" | "password">;
   errors: FieldError | undefined;
   type?: React.HTMLInputTypeAttribute;
 }
