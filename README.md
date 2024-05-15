@@ -1,6 +1,6 @@
 приложение по персонажам Rick and Morty
 
-**API** - используется [](https://rickandmortyapi.com/)
+**API** - используется [API](https://rickandmortyapi.com/)
 
 ## **functionality**
 
