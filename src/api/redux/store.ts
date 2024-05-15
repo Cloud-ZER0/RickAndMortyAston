@@ -17,7 +17,10 @@ const rootReducer = combineReducers({
 export const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(userMiddleware, cardApi.middleware),
+    getDefaultMiddleware().prepend(
+      userMiddleware.middleware,
+      cardApi.middleware
+    ),
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
