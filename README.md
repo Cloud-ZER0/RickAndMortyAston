@@ -1,46 +1,56 @@
-# Getting Started with Create React App
+приложение по персонажам Rick and Morty
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**API** - используется [](https://rickandmortyapi.com/)
 
-## Available Scripts
+## **functionality**
 
-In the project directory, you can run:
+- **Регистрация и авторизация** пользователи могут создать учетную запись и авторизоваться в приложении
+- **Поиск** приложение предоставляет возможность поиска карточек
+- **Избранное** пользователи могут добавлять и удалять избранное
+- **История поиска:** приложение дает пользователям доступ к истории поиска
 
-### `yarn start`
+## Реализованные требования:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### **1 уровень (обязательный - необходимый минимум)**
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- [x] Реализованы **Требования к функциональности**
 
-### `yarn test`
+**React**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [x] **Функциональные компоненты c хуками** в приоритете над классовыми
+- [x] Есть разделение на **[глупые](https://github.com/Cloud-ZER0/RickAndMortyAston/blob/main/src/shared/components/NothingYet/NothingYet.tsx)** и **[умные](https://github.com/Cloud-ZER0/RickAndMortyAston/blob/main/src/shared/pages/main/MainPage.tsx)** компоненты
 
-### `yarn build`
+- [x] Есть [**рендеринг списков**](https://github.com/Cloud-ZER0/RickAndMortyAston/blob/main/src/shared/components/HistoryList/HistoryList.tsx)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [x] Реализована хотя бы одна [**форма**](https://github.com/Cloud-ZER0/RickAndMortyAston/blob/main/src/shared/components/Form/SignInForm/SignInForm.tsx)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- [x] Есть применение [**Контекст API**](https://github.com/Cloud-ZER0/RickAndMortyAston/blob/main/src/api/context/contextProvider.tsx)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- [x] Есть применение **предохранителя** [тут](https://github.com/Cloud-ZER0/RickAndMortyAston/blob/main/src/shared/pages/main/MainPage.tsx) и [тут](https://github.com/Cloud-ZER0/RickAndMortyAston/blob/main/src/shared/components/ErrorBoundary/ErrorBoundary.tsx)
 
-### `yarn eject`
+- [x] Есть хотя бы один [**кастомный хук**](https://github.com/Cloud-ZER0/RickAndMortyAston/blob/main/src/shared/hooks/useFavorite.ts)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- [x] Хотя бы несколько компонентов используют **PropTypes** [тут](https://github.com/Cloud-ZER0/RickAndMortyAston/blob/main/src/shared/components/FavoriteList/FavoriteList.tsx) и [тут](https://github.com/Cloud-ZER0/RickAndMortyAston/blob/main/src/shared/components/Form/SignInForm/SignInForm.tsx)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- [x] Поиск не должен триггерить много запросов к серверу
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- [x] Есть применение [Lazy + Suspense](https://github.com/Cloud-ZER0/RickAndMortyAston/blob/main/src/shared/components/Router/Router.tsx)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+**Redux**
 
-## Learn More
+- [x] Используем [**Modern Redux with Redux Toolkit**](https://github.com/Cloud-ZER0/RickAndMortyAston/blob/main/src/api/redux/store.ts)
+- [x] Используем [**слайсы**](https://github.com/Cloud-ZER0/RickAndMortyAston/blob/main/src/api/redux/slices/user.ts)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- [x] Есть хотя бы одна **кастомная мидлвара** или [**createListenerMiddleware**](https://github.com/Cloud-ZER0/RickAndMortyAston/blob/main/src/api/redux/middleware/user-middleware.ts)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- [x] Используется [**RTK Query**](https://github.com/Cloud-ZER0/RickAndMortyAston/blob/main/src/api/redux/api/card-api.ts)
+
+- [x] Используется [**Transforming Responses**](https://github.com/Cloud-ZER0/RickAndMortyAston/blob/main/src/shared/utils/parseLoadedCharecters.ts)
+
+### **2 уровень (необязательный)**
+
+- [x] Использование [**TypeScript**](https://github.com/Cloud-ZER0/RickAndMortyAston/blob/main/tsconfig.json)
+- [x] Подключен **storybook** и созданы два, три сториса, которые показывают разные состояния компонента [тут](https://github.com/Cloud-ZER0/RickAndMortyAston/blob/main/src/shared/components/UI/Button/Button.stories.tsx)
+- [x] Использование Firesbase для учетных записей и их Избранного и Истории поиска [тут](https://github.com/Cloud-ZER0/RickAndMortyAston/blob/main/src/shared/firebase/firebase.ts)
+- [x] Используются [**мемоизированные селекторы** (createSelector)](https://github.com/Cloud-ZER0/RickAndMortyAston/blob/main/src/api/redux/selectors/index.ts)
+- [x] Связь UI и бизнес-логики построена не через команды, а через события

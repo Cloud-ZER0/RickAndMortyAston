@@ -3,7 +3,7 @@ import { clearFavoriteLocal } from "../slices/favorite";
 import { getFavorite } from "../thunks/favorite-thunk";
 import { getHistory } from "../thunks/history-thunk";
 import { AppDispatch, RootState } from "../store";
-import { removeUser, setUser, userSlice } from "../slices/user";
+import { removeUser, setUser } from "../slices/user";
 import { onNotifyError } from "../../../shared/utils/notification";
 
 export const userMiddleware = createListenerMiddleware();

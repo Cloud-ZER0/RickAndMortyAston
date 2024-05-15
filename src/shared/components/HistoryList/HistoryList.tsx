@@ -1,6 +1,7 @@
 import styles from "./HistoryList.module.scss";
 import { HistoryRow } from "../UI/HistoryRow/HistoryRow";
 import { Button } from "../UI/Button/Button";
+import PropTypes from "prop-types";
 
 interface HistoryListProps {
   data: string[];
@@ -24,4 +25,9 @@ export const HistoryList = ({ data, toggleClear }: HistoryListProps) => {
       </Button>
     </div>
   );
+};
+
+HistoryList.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.string).isRequired,
+  toggleClear: PropTypes.func.isRequired,
 };

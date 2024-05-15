@@ -19,29 +19,29 @@ const TOAST_SETUP: ToastOptions = {
   theme: "light",
 };
 
-export const onNotifySuccessLogout = () => {
+export const onNotifySuccessLogout = (): void => {
   toast(LOGOUT_MSG, TOAST_SETUP);
 };
 
-export const onNotifyError = () => {
+export const onNotifyError = (): void => {
   toast.error(ERROR_MSG, TOAST_SETUP);
 };
 
-export const onNotifyClearFavoirte = () => {
+export const onNotifyClearFavoirte = (): void => {
   toast(CLEAR_FAVORITE_MSG, TOAST_SETUP);
 };
 
-export const onNotifyFavoriteAdded = () => {
+export const onNotifyFavoriteAdded = (): void => {
   toast(FAVORITE_MSG, TOAST_SETUP);
 };
-export const onNotifyFavoriteRemoved = () => {
+export const onNotifyFavoriteRemoved = (): void => {
   toast(FAVORITE_REMOVE_MSG, TOAST_SETUP);
 };
 
-export const onNotifyClearHistory = () => {
+export const onNotifyClearHistory = (): void => {
   toast(CLEAR_HISTORY_MSG, TOAST_SETUP);
 };
 
-export const onNotifyHistoryRemoved = () => {
+export const onNotifyHistoryRemoved = (): void => {
   toast(HISTORY_REMOVE_MSG, TOAST_SETUP);
 };

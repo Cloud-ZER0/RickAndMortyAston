@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { Input } from "../../UI/Input/Input";
 import { EMAIL_OPTIONS, PASSWORD_OPTIONS } from "../Options";
 import { FormFieldValues } from "../SignUpForm/SignUpForm";
+import PropTypes from "prop-types";
 
 interface SignInFormProps {
   toggleModal?: () => void;
@@ -72,4 +73,8 @@ export const SignInForm = ({ toggleModal }: SignInFormProps) => {
       {error && <ErrMessage>{error.message}</ErrMessage>}
     </form>
   );
+};
+
+SignInForm.propTypes = {
+  toggleModal: PropTypes.func,
 };
