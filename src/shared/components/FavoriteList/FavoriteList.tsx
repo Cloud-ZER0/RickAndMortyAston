@@ -4,6 +4,7 @@ import styles from "./FavoriteList.module.scss";
 import { Navigate } from "react-router-dom";
 import { Loading } from "../Loading/Loading";
 import { Button } from "../UI/Button/Button";
+import PropTypes from "prop-types";
 
 interface FavoriteListProps {
   ids: string;
@@ -29,4 +30,9 @@ export const FavoriteList = ({ ids, toggleClear }: FavoriteListProps) => {
       </Button>
     </>
   );
+};
+
+FavoriteList.propTypes = {
+  ids: PropTypes.string.isRequired,
+  toggleClear: PropTypes.func.isRequired,
 };
