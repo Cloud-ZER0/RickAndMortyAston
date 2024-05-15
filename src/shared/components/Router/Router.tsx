@@ -12,6 +12,7 @@ const HistoryPage = lazy(() => import("../../pages/history/HistoryPage"));
 
 const SearchPage = lazy(() => import("../../pages/search/SearchPage"));
 const SignInPage = lazy(() => import("../../pages/signin/SignInPage"));
+const ErrorPage = lazy(() => import("../../pages/error/Error"));
 
 export const Router = () => {
   return (
@@ -39,6 +40,7 @@ export const Router = () => {
         <Route path={ROUTES.SEARCH} element={<SearchPage />} />
         <Route path={ROUTES.SIGNUP} element={<SignUpPage />} />
         <Route path={ROUTES.SIGNIN} element={<SignInPage />} />
+        <Route path={ROUTES.ERROR} element={<ErrorPage />} />
       </Routes>
     </Suspense>
   );

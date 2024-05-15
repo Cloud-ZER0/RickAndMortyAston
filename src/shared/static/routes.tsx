@@ -6,4 +6,5 @@ export const ROUTES = {
   FAVORITES: "/favorites",
   SIGNUP: "/signup",
   SIGNIN: "/signin",
+  ERROR: "/error",
 };
