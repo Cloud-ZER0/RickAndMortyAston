@@ -23,7 +23,7 @@ export const useSigneUp = (auth: Auth) => {
             history: [],
             favorites: [],
           });
-          navigate("/");
+          navigate(-1);
         })
         .catch((err) => setError(err as AuthError))
         .finally(() => setLoading(false));
