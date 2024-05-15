@@ -1,9 +1,9 @@
 import { useGetSeveralCharectersByIdQuery } from "../../../api/redux/api/card-api";
 import { Card } from "../Card/Card";
 import styles from "./FavoriteList.module.scss";
-import { ClearButton } from "../ClaerButton/ClearButton";
 import { Navigate } from "react-router-dom";
 import { Loading } from "../Loading/Loading";
+import { Button } from "../UI/Button/Button";
 
 interface FavoriteListProps {
   ids: string;
@@ -24,11 +24,9 @@ export const FavoriteList = ({ ids, toggleClear }: FavoriteListProps) => {
       <ul className={styles.list}>
         {isVisible && data.map((el, i) => <Card {...el} key={i} />)}
       </ul>
-      <ClearButton
-        onClearAction={toggleClear}
-        isVisible={isVisible as boolean}
-        placeHolder="Clear Favorite"
-      />
+      <Button onAction={toggleClear} variant="Clear" className={styles.btn}>
+        Clear favorite
+      </Button>
     </>
   );
 };

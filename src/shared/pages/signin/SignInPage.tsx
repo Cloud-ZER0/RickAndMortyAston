@@ -1,8 +1,11 @@
 import { SignInForm } from "../../components/Form/SignInForm/SignInForm";
-import styles from "./SignInPage.module.scss";
 
 const SignInPage = () => {
-  return <SignInForm />;
+  return (
+    <section className="section">
+      <SignInForm />
+    </section>
+  );
 };
 
 export default SignInPage;

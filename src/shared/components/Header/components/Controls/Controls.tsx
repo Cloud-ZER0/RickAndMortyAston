@@ -17,7 +17,9 @@ export const Controls = () => {
       )}
     >
       {session.isLogedIn ? (
-        <Button onAction={onLogout}>Logout</Button>
+        <Button onAction={onLogout} variant="Logout">
+          Logout
+        </Button>
       ) : (
         <div className={styles.logInLinks}>
           <Link className={styles.link} to={"/signin"}>

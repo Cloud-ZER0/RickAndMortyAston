@@ -11,13 +11,13 @@ export const useSigneUp = (auth: Auth) => {
   const navigate = useNavigate();
 
   const registerUserWithEmailAndPassword = React.useCallback(
-    async (name: string, email: string, password: string) => {
+    async (email: string, password: string) => {
       setLoading(true);
       setError(undefined);
       await createUserWithEmailAndPassword(auth, email, password)
         .then(async (user) => {
           await setDoc(doc(database, "users", user.user.uid), {
-            name: name ?? "user",
+            name: "user",
             email: email,
             password: password,
             history: [],

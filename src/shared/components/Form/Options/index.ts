@@ -8,12 +8,7 @@ export const EMAIL_OPTIONS: RegisterOptions<FormFieldValues, "login"> = {
     message: "invalid email address *",
   },
 };
-export const NAME_OPTIONS: RegisterOptions<FormFieldValues, "name"> = {
-  pattern: {
-    value: /^[A-Za-z]+/,
-    message: "Invalid name format *",
-  },
-};
+
 export const PASSWORD_OPTIONS: RegisterOptions<FormFieldValues, "password"> = {
   required: { value: true, message: "this filed is required *" },
   minLength: {

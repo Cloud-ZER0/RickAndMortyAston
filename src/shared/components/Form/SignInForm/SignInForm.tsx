@@ -56,7 +56,12 @@ export const SignInForm = ({ toggleModal }: SignInFormProps) => {
         />
       </div>
       <div className={styles.btnWrapp}>
-        <Button className={loading ? styles.loading : ""} type="submit">
+        <Button
+          className={loading ? styles.loading : ""}
+          variant="Primary"
+          fill
+          type="submit"
+        >
           {" Sign In!"}
         </Button>
 

@@ -1,6 +1,6 @@
 import styles from "./HistoryList.module.scss";
 import { HistoryRow } from "../UI/HistoryRow/HistoryRow";
-import { ClearButton } from "../ClaerButton/ClearButton";
+import { Button } from "../UI/Button/Button";
 
 interface HistoryListProps {
   data: string[];
@@ -18,11 +18,10 @@ export const HistoryList = ({ data, toggleClear }: HistoryListProps) => {
           <HistoryRow query={query} key={i} />
         ))}
       </ul>
-      <ClearButton
-        onClearAction={toggleClear}
-        isVisible
-        placeHolder="Clear History"
-      />
+
+      <Button onAction={toggleClear} variant="Clear" className={styles.btn}>
+        Clear History
+      </Button>
     </div>
   );
 };
