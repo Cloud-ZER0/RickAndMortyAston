@@ -8,6 +8,7 @@
 }
 
 .searchForm {
+  position: relative;
   width: 100%;
   max-width: 650px;
   display: flex;
@@ -16,6 +17,66 @@
   gap: 5px;
   transition: all 300ms ease-out;
   animation: anim 300ms ease-out forwards;
+}
+
+.suggestList {
+  position: fixed;
+  top: 67px;
+  left: 51.8%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 5px;
+  background: rgb(53, 53, 53);
+  color: #fff;
+  max-height: 315px;
+  max-width: 600px;
+  width: 100%;
+  overflow-y: auto;
+  animation: anim 300ms ease-out forwards;
+  border-radius: 10px;
+  overflow: hidden;
+  min-height: 60px;
+}
+
+.loader,
+.notFound {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 2;
+
+  height: 100%;
+}
+
+.notFound {
+  z-index: 1;
+  animation: anim 300ms ease-out forwards;
+}
+
+.itemWrapper {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid rgb(65, 65, 65);
+  cursor: pointer;
+  transition: all 300ms ease-out;
+
+  padding: 5px;
+  & img {
+    width: 40px;
+    height: auto;
+    border-radius: 10px;
+  }
+  &:hover {
+    border-color: rgb(78, 78, 78);
+  }
 }
 
 .searchInpt {
@@ -31,6 +92,9 @@
   &:focus {
     border: none;
     outline: none;
+  }
+  &:not(:focus) + .suggestList {
+    display: none;
   }
   &::placeholder {
     color: #fff;
