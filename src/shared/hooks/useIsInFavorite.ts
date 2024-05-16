@@ -17,7 +17,6 @@ import {
 import useModal from "./useModal";
 
 const useIsInFavorite = (cardId: number) => {
-  // const [is, setIs] = useState(false);
   const uid = useAppSelector(selectUid);
   const data = useAppSelector(selectFavorite);
   const isLoading = useAppSelector(selectIsFavoriteLoading);
