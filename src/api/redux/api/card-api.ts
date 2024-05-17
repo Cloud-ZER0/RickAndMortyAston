@@ -42,7 +42,6 @@ export const cardApi = createApi({
     getSeveralCharectersById: builder.query<CharecterCard[], string>({
       query: (ids) => `/character/${ids}`,
       transformResponse: (response: Result[]) => {
-        console.log(response);
         return parseLoadedCharecters(response);
       },
       transformErrorResponse(baseQueryReturnValue, meta, arg) {
