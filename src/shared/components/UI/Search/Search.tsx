@@ -1,26 +1,22 @@
-import React, { useMemo, useState } from "react";
+import React from "react";
 import styles from "./Search.module.scss";
 import { useLocation } from "react-router-dom";
 import { IconSearch } from "../../../icons/SearchIcon";
 import useSearch from "../../../hooks/useSearch";
-import { useFindCharactersByNameQuery } from "../../../../api/redux/api/card-api";
 import { useDebounce } from "use-debounce";
 import { SuggestList } from "../../SuggestList/SuggestList";
-
-const isSearchBarVisible = (pathname: string): boolean => {
-  if (pathname === "/signin" || pathname === "/signup") return false;
-  return true;
-};
+import useSuggestList from "../../../hooks/useSuggestList";
+import isSearchBarVisible from "../../../utils/isSearchBarVisible";
 
 export const Search = () => {
   const { pathname } = useLocation();
   const { searchQuery, toggleOnChange, toggleSearch } = useSearch();
+  const { isVisible, onInputBlured, onInputFocused } = useSuggestList();
   const [value] = useDebounce(searchQuery, 1000);
-  const [isVisible, setIsVisible] = useState(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsVisible(false);
+    onInputBlured();
     toggleSearch();
   };
 
@@ -29,8 +25,8 @@ export const Search = () => {
       {isSearchBarVisible(pathname) ? (
         <form onSubmit={handleSubmit} className={styles.searchForm} action="">
           <input
-            onFocus={() => setIsVisible(true)}
-            // onBlur={() => setIsVisible(false)}
+            onFocus={onInputFocused}
+            onBlur={onInputBlured}
             type="text"
             placeholder="Start typing"
             className={styles.searchInpt}
