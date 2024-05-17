@@ -8,6 +8,7 @@
 }
 
 .searchForm {
+  position: relative;
   width: 100%;
   max-width: 650px;
   display: flex;
@@ -31,6 +32,9 @@
   &:focus {
     border: none;
     outline: none;
+  }
+  &:not(:focus) + .suggestList {
+    display: none;
   }
   &::placeholder {
     color: #fff;

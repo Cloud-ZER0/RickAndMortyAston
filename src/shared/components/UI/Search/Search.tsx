@@ -3,18 +3,20 @@ import styles from "./Search.module.scss";
 import { useLocation } from "react-router-dom";
 import { IconSearch } from "../../../icons/SearchIcon";
 import useSearch from "../../../hooks/useSearch";
-
-const isSearchBarVisible = (pathname: string): boolean => {
-  if (pathname === "/signin" || pathname === "/signup") return false;
-  return true;
-};
+import { useDebounce } from "use-debounce";
+import { SuggestList } from "../../SuggestList/SuggestList";
+import useSuggestList from "../../../hooks/useSuggestList";
+import isSearchBarVisible from "../../../utils/isSearchBarVisible";
 
 export const Search = () => {
   const { pathname } = useLocation();
   const { searchQuery, toggleOnChange, toggleSearch } = useSearch();
+  const { isVisible, onInputBlured, onInputFocused } = useSuggestList();
+  const [value] = useDebounce(searchQuery, 1000);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    onInputBlured();
     toggleSearch();
   };
 
@@ -23,6 +25,8 @@ export const Search = () => {
       {isSearchBarVisible(pathname) ? (
         <form onSubmit={handleSubmit} className={styles.searchForm} action="">
           <input
+            onFocus={onInputFocused}
+            onBlur={onInputBlured}
             type="text"
             placeholder="Start typing"
             className={styles.searchInpt}
@@ -32,6 +36,7 @@ export const Search = () => {
           <button type="submit" className={styles.findBtn}>
             <IconSearch />
           </button>
+          {searchQuery && isVisible && <SuggestList value={value} />}
         </form>
       ) : null}
     </>
