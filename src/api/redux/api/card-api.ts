@@ -44,9 +44,6 @@ export const cardApi = createApi({
       transformResponse: (response: Result[]) => {
         return parseLoadedCharecters(response);
       },
-      transformErrorResponse(baseQueryReturnValue, meta, arg) {
-        return [];
-      },
     }),
   }),
 });
