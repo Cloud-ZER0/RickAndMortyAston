@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkaston_app=self.webpackChunkaston_app||[]).push([[98],{2098:(e,n,s)=>{s.r(n),s.d(n,{default:()=>p});s(5043);var t=s(579);const p=()=>(0,t.jsx)("h1",{style:{textAlign:"center",marginTop:"200px"},children:"Oops...something went wrong"})}}]);
+//# sourceMappingURL=98.a92d3e37.chunk.js.map
