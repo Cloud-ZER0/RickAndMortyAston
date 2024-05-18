@@ -6,7 +6,7 @@ import { ResponseType, Result, TransfromedResponse } from "../../types";
 
 export const cardApi = createApi({
   reducerPath: "cardApi",
-  baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_PUBLIC_BASE_API }),
+  baseQuery: fetchBaseQuery({ baseUrl: "https://rickandmortyapi.com/api" }),
   endpoints: (builder) => ({
     getAllCharecters: builder.query<TransfromedResponse, number>({
       query: (page) => `/character/?page=${page}`,
